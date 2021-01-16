@@ -16,12 +16,6 @@ import java.util.Collections;
 
 @Configuration
 @EnableSwagger2
-@ApiResponses(value = {
-        @ApiResponse(code=400, message = "This is a bad request, please follow the API documentation for the proper request format."),
-        @ApiResponse(code=401, message = "Due to security constraints, your access request cannot be authorised."),
-        @ApiResponse(code=500, message = "The server is down. Please make sure that the Dog microservice is running.")
-
-})
 public class SwaggerConfig {
     @Bean
     public Docket api(){
