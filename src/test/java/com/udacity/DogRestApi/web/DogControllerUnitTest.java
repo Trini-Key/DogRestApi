@@ -26,12 +26,40 @@ public class DogControllerUnitTest {
     DogService dogService;
 
     @Test
-    public void retrieveDogs() throws Exception{
+    public void getAllDogs() throws Exception{
         mockMvc.perform(get("/dogs/"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json("[]"));
 
         verify(dogService, times(1)).retrieveDogs();
+    }
+
+    @Test
+    public void getDogBreeds() throws Exception{
+        mockMvc.perform(get("/dogs/breed"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json("[]"));
+
+        verify(dogService, times(1)).retrieveDogBreed();
+    }
+
+    @Test
+    public void getBreedById() throws Exception{
+        mockMvc.perform(get("/1/breed"))
+                .andExpect(status().isOk());
+
+        verify(dogService, times(1)).retrieveDogBreedById(1L);
+    }
+
+    @Test
+    public void getDogNames() throws Exception{
+        mockMvc.perform(get("/dogs/name"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json("[]"));
+
+        verify(dogService, times(1)).retrieveDogNames();
     }
 }
